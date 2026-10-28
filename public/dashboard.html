@@ -1,27 +1,49 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Your page</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css"></head><body>
-<main class="card" style="max-width:720px"><h1>Your page</h1><p class="tagline" id="url">&nbsp;</p>
+<link rel="stylesheet" href="/assets/style.css"></head><body class="db">
+<div class="dash"><main class="card" style="max-width:none"><h1>Your page</h1><p class="tagline" id="url">&nbsp;</p>
 <form id="f">
+<details open><summary>Basics</summary>
 <label>Link name<input name="slug" maxlength="24"></label>
 <label>Display name<input name="name" maxlength="40"></label>
-<label>Tagline<input name="tagline" maxlength="120"></label>
+<label>Tagline (separate several with | for the typing effect)<input name="tagline" maxlength="120"></label>
 <div class="row"><label>Location<input name="location" maxlength="40"></label><label>Status text<input name="status" maxlength="30" placeholder="Open to work"></label></div>
 <label>About<textarea name="about" rows="3" maxlength="600"></textarea></label>
 <label>Skills (comma separated)<input name="skills"></label>
+<label class="chk"><input type="checkbox" name="useAvatar">Use my Discord avatar</label></details>
+
+<details><summary>Look and effects</summary>
+<div class="tpl" id="tpl"></div>
+<div class="row"><label>Theme<select name="lk_theme"><option value="midnight">Midnight</option><option value="ocean">Ocean</option><option value="sakura">Sakura</option><option value="forest">Forest</option><option value="sunset">Sunset</option><option value="mono">Mono</option></select></label>
+<label>Font<select name="lk_font"><option>Manrope</option><option>Space Grotesk</option><option>Outfit</option><option>JetBrains Mono</option><option>Fraunces</option></select></label></div>
+<div class="row"><label class="chk"><input type="checkbox" name="lk_customAccent">Use my own accent colour</label><label>Accent colour<input type="color" name="accent"></label></div>
+<label>Background image or video link (direct .jpg .png .gif .mp4 .webm)<input name="lk_bg" type="url" placeholder="https://…"></label>
+<div class="row"><label>Background darkness<input type="range" name="lk_bgDim" min="0" max="90"></label><label>Card blur<input type="range" name="lk_blur" min="0" max="40"></label></div>
+<label>Card opacity<input type="range" name="lk_cardAlpha" min="20" max="100"></label>
+<div class="row"><label>Layout<select name="lk_align"><option value="left">Left</option><option value="center">Centered</option></select></label><label>Avatar shape<select name="lk_shape"><option value="circle">Circle</option><option value="rounded">Rounded</option><option value="square">Square</option></select></label></div>
+<div class="row"><label>Falling effect<select name="lk_fx"><option value="none">None</option><option value="stars">Twinkling stars</option><option value="snow">Snow</option></select></label><label>Custom cursor link (.png or .cur)<input name="lk_cursor" type="url"></label></div>
+<div class="row"><label>Name effect<select name="lk_nameFx"><option value="glow">Glow</option><option value="neon">Neon</option><option value="rainbow">Rainbow</option><option value="glitch">Glitch</option><option value="none">None</option></select></label><label>Banner image link<input name="lk_banner" type="url" placeholder="https://…"></label></div><label class="chk"><input type="checkbox" name="lk_typewriter">Typing effect on tagline</label><label class="chk"><input type="checkbox" name="lk_tilt">3D tilt when hovering</label><label class="chk"><input type="checkbox" name="lk_views">Show view counter (approximate)</label></details>
+
+<details><summary>Socials and experience</summary>
 <label>Socials (one per line: Name | handle | https://link)<textarea name="socials" rows="5"></textarea></label>
 <label>Experience (one per line: Role | Company | Dates | point; point)<textarea name="experience" rows="5"></textarea></label>
-<div class="row"><label>Accent colour<input type="color" name="accent"></label><label class="chk"><input type="checkbox" name="useAvatar">Use my Discord avatar</label></div>
-<fieldset><legend>Badges</legend>
+<label>Discord server invites (one per line, up to 3)<textarea name="servers" rows="2" placeholder="discord.gg/yourcode"></textarea></label></details>
+
+<details><summary>Badges and music</summary>
 <label class="chk"><input type="checkbox" name="showDBadges">Show my Discord badges (imported when you log in)</label>
-<label class="chk s"><input type="checkbox" name="b_dev">💻 Developer</label><label class="chk s"><input type="checkbox" name="b_design">🎨 Designer</label><label class="chk s"><input type="checkbox" name="b_creator">🎬 Creator</label><label class="chk s"><input type="checkbox" name="b_gamer">🎮 Gamer</label></fieldset>
-<fieldset><legend>Music</legend>
+<label class="chk s"><input type="checkbox" name="b_dev">💻 Developer</label><label class="chk s"><input type="checkbox" name="b_design">🎨 Designer</label><label class="chk s"><input type="checkbox" name="b_creator">🎬 Creator</label><label class="chk s"><input type="checkbox" name="b_gamer">🎮 Gamer</label>
 <label>Direct audio link (.mp3, .ogg or .wav URL)<input name="musicUrl" type="url" placeholder="https://…/song.mp3"></label>
-<label>Track title<input name="musicTitle" maxlength="60"></label>
-<label class="chk"><input type="checkbox" name="musicGate">Show a "Click to enter" screen so the music can autoplay</label></fieldset>
-<fieldset><legend>Discord account status</legend>
-<label class="chk"><input type="checkbox" name="acctShow">Show a small status button on my page</label>
-<div class="row"><label>Status<select name="acctState"><option value="active">Active</option><option value="limited">Limited</option><option value="terminated">Terminated</option></select></label>
-<label>New account (username or ID)<input name="newAccount" maxlength="60"></label></div></fieldset>
+<div class="row"><label>Track title<input name="musicTitle" maxlength="60"></label><label>Entry screen text<input name="lk_gateText" maxlength="30"></label></div>
+<label>More songs (one per line: Title | audio link, up to 5)<textarea name="musicMore" rows="3"></textarea></label>
+<label class="chk"><input type="checkbox" name="musicGate">Show an entry screen so the music can autoplay</label></details>
+
+<details><summary>Discord status</summary>
+<label class="chk"><input type="checkbox" name="acctShow">Show a small account status button on my page</label>
+<div class="row"><label>Status<select name="acctState"><option value="active">Active</option><option value="limited">Limited</option><option value="terminated">Terminated</option></select></label><label>New account (username or ID)<input name="newAccount" maxlength="60"></label></div>
+<label class="chk"><input type="checkbox" name="lk_presence">Show my live Discord status and what I'm listening to or playing</label>
+<small class="h">This uses the free Lanyard service. Join its Discord server first (find the invite at github.com/Phineas/lanyard). It also puts your Discord ID in your page's code.</small></details>
+
+<details><summary>Account</summary><p class="tagline" style="margin:12px 0">Deleting removes your page and settings for good.</p><button type="button" class="btn" id="del" style="background:#ff6b6b">Delete my page</button></details>
 <div class="bar"><button class="btn" type="submit">Save</button><span id="msg"></span><a href="/logout" style="margin-left:auto">Log out</a></div>
-</form></main><script src="/assets/dashboard.js"></script></body></html>
+</form></main>
+<aside class="preview"><iframe id="pv" title="Live preview"></iframe></aside></div><script src="/assets/dashboard.js"></script></body></html>

@@ -15,6 +15,7 @@ export async function onRequestGet({ request, env }) {
     while (RESERVED.has(s) || (await env.PROFILES.get("slug:" + s))) s = base.slice(0, 20) + ++i;
     p.slug = s; await env.PROFILES.put("slug:" + s, u.id);
   }
+  if (!p.uid) { const n = (Number(await env.PROFILES.get("meta:uid")) || 0) + 1; await env.PROFILES.put("meta:uid", String(n)); p.uid = n; }
   if (p.banned) return H("This account is banned.", 403);
   p.avatar = u.avatar ? `https://cdn.discordapp.com/avatars/${u.id}/${u.avatar}.png?size=256` : "";
   p.dBadges = DBADGES.filter(([bit]) => (u.public_flags || 0) & bit).map(([, l, e]) => [l, e]);
